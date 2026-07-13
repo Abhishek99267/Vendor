@@ -1,11 +1,7 @@
-/* ==========================================================
-   VendorLink — Design System
-   One stylesheet, only the classes the app actually uses.
-   ========================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
-/* ---------- Reset & base ---------- */
+
 
 *,
 *::before,
@@ -63,7 +59,7 @@ button {
   background: var(--primary-dark);
 }
 
-/* ---------- Design tokens ---------- */
+
 
 :root {
   --primary: #4f46e5;
@@ -96,7 +92,7 @@ button {
   --transition: .18s ease;
 }
 
-/* ---------- Container ---------- */
+
 
 .container {
   max-width: 1180px;
@@ -104,9 +100,7 @@ button {
   padding: 0 24px;
 }
 
-/* ==========================================================
-   BUTTONS
-   ========================================================== */
+
 
 .btn {
   border: none;
@@ -216,9 +210,7 @@ button {
   border-color: var(--danger);
 }
 
-/* ==========================================================
-   LANDING PAGE — NAVBAR
-   ========================================================== */
+
 
 .navbar {
   background: #fff;
@@ -262,7 +254,7 @@ button {
   color: #fff;
 }
 
-/* ---------- Hero ---------- */
+
 
 .hero {
   background: linear-gradient(180deg, var(--primary-light) 0%, var(--background) 100%);
@@ -307,7 +299,7 @@ button {
   box-shadow: var(--shadow-lg);
 }
 
-/* ---------- Features / about section ---------- */
+
 
 .features {
   padding: 90px 0;
@@ -380,9 +372,7 @@ button {
   font-size: 14px;
 }
 
-/* ==========================================================
-   AUTH PAGES (Login / Register)
-   ========================================================== */
+
 
 .auth-section {
   min-height: 100vh;
@@ -426,9 +416,7 @@ button {
   text-decoration: underline;
 }
 
-/* ==========================================================
-   APP SHELL — SIDEBAR + LAYOUT
-   ========================================================== */
+
 
 .dashboard {
   display: flex;
@@ -533,9 +521,7 @@ button {
   color: var(--secondary);
 }
 
-/* ==========================================================
-   CARDS
-   ========================================================== */
+
 
 .card-grid {
   display: grid;
@@ -587,9 +573,7 @@ button {
   margin-bottom: 18px;
 }
 
-/* ==========================================================
-   FORMS
-   ========================================================== */
+
 
 .form-row {
   display: grid;
@@ -660,9 +644,7 @@ textarea.form-control {
   box-shadow: 0 0 0 3px var(--primary-light);
 }
 
-/* ==========================================================
-   TABLES
-   ========================================================== */
+
 
 .table-container {
   background: #fff;
@@ -707,9 +689,7 @@ textarea.form-control {
   background: #f8fafc;
 }
 
-/* ==========================================================
-   BADGES
-   ========================================================== */
+
 
 .badge {
   display: inline-flex;
@@ -740,9 +720,7 @@ textarea.form-control {
   color: var(--primary);
 }
 
-/* ==========================================================
-   MODAL
-   ========================================================== */
+
 
 .modal {
   display: none;
@@ -789,9 +767,6 @@ textarea.form-control {
   color: var(--danger);
 }
 
-/* ==========================================================
-   TOAST & LOADER  (elements are created dynamically by common.js)
-   ========================================================== */
 
 .toast {
   position: fixed;
@@ -839,9 +814,7 @@ textarea.form-control {
   to { transform: rotate(360deg); }
 }
 
-/* ==========================================================
-   EMPTY / MISC
-   ========================================================== */
+
 
 .empty-row td {
   text-align: center;
@@ -849,9 +822,7 @@ textarea.form-control {
   padding: 32px !important;
 }
 
-/* ==========================================================
-   RESPONSIVE
-   ========================================================== */
+
 
 @media (max-width: 960px) {
   .hero-content {

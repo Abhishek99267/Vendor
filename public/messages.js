@@ -1,10 +1,4 @@
-// =====================================================
-// VendorLink - Messages Module
-// =====================================================
 
-// =====================================================
-// DOM Elements
-// =====================================================
 
 const messageForm = document.getElementById("messageForm");
 const messageTable = document.getElementById("messageTable");
@@ -17,9 +11,6 @@ const searchBtn = document.getElementById("searchBtn");
 const logoutBtn = document.getElementById("logoutBtn");
 const sidebarLogout = document.getElementById("sidebarLogout");
 
-// =====================================================
-// Logout
-// =====================================================
 
 if (logoutBtn) {
 
@@ -33,9 +24,7 @@ if (sidebarLogout) {
 
 }
 
-// =====================================================
-// Load Vendor Dropdown
-// =====================================================
+
 
 async function loadVendors() {
 
@@ -86,9 +75,7 @@ async function loadVendors() {
 
 }
 
-// =====================================================
-// Load Messages
-// =====================================================
+
 
 async function loadMessages() {
 
@@ -138,15 +125,11 @@ async function loadMessages() {
 
 }
 
-// =====================================================
-// Global Messages Array
-// =====================================================
+
 
 let messages = [];
 
-// =====================================================
-// Render Messages Table
-// =====================================================
+
 
 function renderMessageTable(data) {
 
@@ -243,9 +226,7 @@ function renderMessageTable(data) {
 
 }
 
-// =====================================================
-// Status Badge
-// =====================================================
+
 
 function getStatusBadge(status) {
 
@@ -275,9 +256,7 @@ function getStatusBadge(status) {
 
 }
 
-// =====================================================
-// Statistics
-// =====================================================
+
 
 function updateStatistics(data) {
 
@@ -342,9 +321,7 @@ function updateStatistics(data) {
 
 }
 
-// =====================================================
-// Recent Messages
-// =====================================================
+
 
 function renderRecentMessages(data) {
 
@@ -399,9 +376,7 @@ function renderRecentMessages(data) {
 
 }
 
-// =====================================================
-// Search Messages
-// =====================================================
+
 
 function searchMessages() {
 
@@ -467,9 +442,7 @@ if (searchInput) {
 }
 
 
-// =====================================================
-// Add / Update Message
-// =====================================================
+
 
 if (messageForm) {
 
@@ -598,9 +571,7 @@ if (messageForm) {
 
 }
 
-// =====================================================
-// Delete Message
-// =====================================================
+
 
 async function deleteMessage(id) {
 
@@ -667,9 +638,7 @@ async function deleteMessage(id) {
 
 }
 
-// =====================================================
-// Mark As Read
-// =====================================================
+
 
 async function markAsRead(id) {
 
@@ -712,9 +681,7 @@ async function markAsRead(id) {
 
 }
 
-// =====================================================
-// Edit Message
-// =====================================================
+
 
 async function editMessage(id) {
 
@@ -752,9 +719,7 @@ async function editMessage(id) {
 
 }
 
-// =====================================================
-// Initialize Edit Mode
-// =====================================================
+
 
 function initializeEditMode() {
 
@@ -798,9 +763,7 @@ function initializeEditMode() {
 
 }
 
-// =====================================================
-// Initialize
-// =====================================================
+
 
 document.addEventListener(
 

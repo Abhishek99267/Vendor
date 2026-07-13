@@ -1,8 +1,5 @@
 const Vendor = require("../models/Vendor");
 
-// ====================================
-// Create Vendor
-// ====================================
 
 const createVendor = async (req, res) => {
   try {
@@ -21,9 +18,7 @@ const createVendor = async (req, res) => {
   }
 };
 
-// ====================================
-// Get All Vendors
-// ====================================
+
 
 const getAllVendors = async (req, res) => {
   try {
@@ -42,9 +37,7 @@ const getAllVendors = async (req, res) => {
   }
 };
 
-// ====================================
-// Get Vendor By ID
-// ====================================
+
 
 const getVendorById = async (req, res) => {
   try {
@@ -69,9 +62,7 @@ const getVendorById = async (req, res) => {
   }
 };
 
-// ====================================
-// Update Vendor
-// ====================================
+
 
 const updateVendor = async (req, res) => {
   try {
@@ -104,9 +95,7 @@ const updateVendor = async (req, res) => {
   }
 };
 
-// ====================================
-// Delete Vendor
-// ====================================
+
 
 const deleteVendor = async (req, res) => {
   try {
@@ -131,9 +120,7 @@ const deleteVendor = async (req, res) => {
   }
 };
 
-// ====================================
-// Search Vendors
-// ====================================
+
 
 const searchVendors = async (req, res) => {
   try {
@@ -181,9 +168,7 @@ const searchVendors = async (req, res) => {
   }
 };
 
-// ====================================
-// Vendor Statistics
-// ====================================
+
 
 const vendorStats = async (req, res) => {
   try {

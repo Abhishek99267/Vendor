@@ -10,9 +10,7 @@ const {
 
 const authMiddleware = require("../middleware/authMiddleware");
 
-// ======================================
-// Public Routes
-// ======================================
+
 
 // Register User
 router.post("/register", registerUser);
@@ -20,9 +18,7 @@ router.post("/register", registerUser);
 // Login User
 router.post("/login", loginUser);
 
-// ======================================
-// Protected Routes
-// ======================================
+
 
 // Get Logged In User Profile
 router.get("/profile", authMiddleware, getProfile);

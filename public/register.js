@@ -1,7 +1,3 @@
-// ==========================================
-// VendorLink Register
-// Relies on common.js for showToast / showLoading / hideLoading
-// ==========================================
 
 const registerForm = document.getElementById("registerForm");
 
@@ -16,18 +12,12 @@ const confirmPasswordInput = document.getElementById("confirmPassword");
 
 const REGISTER_API_URL = `${API_BASE}/auth/register`;
 
-// ==========================================
-// Validate Email
-// ==========================================
 
 function validateEmail(value) {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return regex.test(value);
 }
 
-// ==========================================
-// Register Form Submit
-// ==========================================
 
 registerForm.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -91,9 +81,7 @@ registerForm.addEventListener("submit", async (e) => {
     }
 });
 
-// ==========================================
-// Clear any stale session before registering
-// ==========================================
+
 
 localStorage.removeItem("token");
 localStorage.removeItem("user");

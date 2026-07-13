@@ -1,10 +1,3 @@
-// =============================================
-// VendorLink Common Utility File
-// =============================================
-
-// =============================================
-// API Configuration
-// =============================================
 
 const API_BASE = "/api";
 
@@ -15,9 +8,6 @@ const headers = {
     "Authorization": `Bearer ${token}`
 };
 
-// =============================================
-// Authentication
-// =============================================
 
 const PUBLIC_PAGES = ["/login", "/register", "/"];
 
@@ -33,9 +23,7 @@ function logout() {
     window.location.href = "/login";
 }
 
-// =============================================
-// API Helper
-// =============================================
+
 
 async function apiFetch(url, options = {}) {
     const response = await fetch(url, {
@@ -52,9 +40,7 @@ async function apiFetch(url, options = {}) {
     return data;
 }
 
-// =============================================
-// Toast Notification
-// =============================================
+
 
 function showToast(message, type = "info") {
     let toast = document.getElementById("toast");
@@ -76,9 +62,7 @@ function showToast(message, type = "info") {
     }, 3000);
 }
 
-// =============================================
-// Loading Overlay
-// =============================================
+
 
 function showLoading() {
     let loader = document.getElementById("globalLoader");
@@ -102,9 +86,7 @@ function hideLoading() {
     }
 }
 
-// =============================================
-// Formatters
-// =============================================
+
 
 function formatCurrency(amount) {
     return new Intl.NumberFormat("en-IN", {
@@ -126,9 +108,6 @@ function confirmAction(message) {
     return window.confirm(message);
 }
 
-// =============================================
-// Global Initialization
-// =============================================
 
 document.addEventListener("DOMContentLoaded", () => {
     checkAuth();

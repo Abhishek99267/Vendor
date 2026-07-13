@@ -15,9 +15,6 @@ const {
     vendorPerformanceDashboard
 } = require("../controllers/performanceController");
 
-// =========================================
-// Dashboard Routes
-// =========================================
 
 // Top Rated Vendors
 router.get(
@@ -40,9 +37,7 @@ router.get(
     vendorPerformanceDashboard
 );
 
-// =========================================
-// Vendor Performance
-// =========================================
+
 
 // Get Performance By Vendor
 router.get(
@@ -51,9 +46,7 @@ router.get(
     getVendorPerformance
 );
 
-// =========================================
-// CRUD Routes
-// =========================================
+
 
 // Get All Reviews
 router.get(

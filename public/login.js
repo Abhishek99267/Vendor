@@ -1,7 +1,3 @@
-// ==========================================
-// VendorLink Login
-// Relies on common.js for showToast / showLoading / hideLoading
-// ==========================================
 
 const loginForm = document.getElementById("loginForm");
 const email = document.getElementById("email");
@@ -10,9 +6,7 @@ const togglePassword = document.getElementById("togglePassword");
 
 const LOGIN_API_URL = `${API_BASE}/auth/login`;
 
-// ==========================================
-// Show / Hide Password
-// ==========================================
+
 
 togglePassword.addEventListener("click", () => {
     const isHidden = password.type === "password";
@@ -20,9 +14,6 @@ togglePassword.addEventListener("click", () => {
     togglePassword.innerHTML = isHidden ? "🙈" : "👁";
 });
 
-// ==========================================
-// Login Form Submit
-// ==========================================
 
 loginForm.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -67,9 +58,7 @@ loginForm.addEventListener("submit", async (e) => {
     }
 });
 
-// ==========================================
-// Redirect if already logged in
-// ==========================================
+
 
 if (localStorage.getItem("token")) {
     window.location.href = "/dashboard";

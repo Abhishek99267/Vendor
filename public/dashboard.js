@@ -1,16 +1,9 @@
-// =============================================
-// VendorLink Dashboard
-// API_BASE and token are already declared in common.js
-// =============================================
 
-// User
+
 const currentUser = JSON.parse(
     localStorage.getItem("user")
 );
 
-// =============================================
-// Authentication Check
-// =============================================
 
 if (!token) {
 
@@ -18,9 +11,7 @@ if (!token) {
 
 }
 
-// =============================================
-// Helper Function
-// =============================================
+
 
 async function apiFetch(url) {
 
@@ -40,9 +31,7 @@ async function apiFetch(url) {
 
 }
 
-// =============================================
-// Load User
-// =============================================
+
 
 function loadUser() {
 
@@ -58,9 +47,7 @@ function loadUser() {
 
 }
 
-// =============================================
-// Vendor Statistics
-// =============================================
+
 
 async function loadVendorStats() {
 
@@ -95,9 +82,7 @@ async function loadVendorStats() {
     }
 
 }
-// =============================================
-// Purchase Statistics
-// =============================================
+
 
 async function loadPurchaseStats() {
 
@@ -127,9 +112,7 @@ async function loadPurchaseStats() {
 
 }
 
-// =============================================
-// Performance Statistics
-// =============================================
+
 
 async function loadPerformanceStats() {
 
@@ -152,9 +135,6 @@ async function loadPerformanceStats() {
 
 }
 
-// =============================================
-// Message Statistics
-// =============================================
 
 async function loadMessageStats() {
 
@@ -178,9 +158,7 @@ async function loadMessageStats() {
 
 }
 
-// =============================================
-// Logout
-// =============================================
+
 
 function logout() {
 
@@ -191,9 +169,7 @@ function logout() {
 
 }
 
-// =============================================
-// Dashboard Initialize
-// =============================================
+
 
 document.addEventListener("DOMContentLoaded", () => {
 

@@ -15,9 +15,6 @@ const {
     recentMessages
 } = require("../controllers/messageController");
 
-// ==========================================
-// Dashboard Routes
-// ==========================================
 
 // Message Statistics
 router.get(
@@ -33,9 +30,7 @@ router.get(
     recentMessages
 );
 
-// ==========================================
-// Vendor Messages
-// ==========================================
+
 
 // Get Messages By Vendor
 router.get(
@@ -44,9 +39,7 @@ router.get(
     getVendorMessages
 );
 
-// ==========================================
-// CRUD Routes
-// ==========================================
+
 
 // Get All Messages
 router.get(

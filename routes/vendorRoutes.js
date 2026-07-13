@@ -14,21 +14,15 @@ const {
   vendorStats,
 } = require("../controllers/vendorController");
 
-// ======================================
-// Dashboard Statistics
-// ======================================
+
 
 router.get("/stats", authMiddleware, vendorStats);
 
-// ======================================
-// Search Vendors
-// ======================================
+
 
 router.get("/search", authMiddleware, searchVendors);
 
-// ======================================
-// CRUD Routes
-// ======================================
+
 
 // Get All Vendors
 router.get("/", authMiddleware, getAllVendors);

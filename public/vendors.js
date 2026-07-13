@@ -1,7 +1,3 @@
-// ============================================
-// VendorLink - Vendors Module
-// API_BASE, token, and headers are already declared in common.js
-// ============================================
 
 if (!token) {
 
@@ -9,9 +5,6 @@ if (!token) {
 
 }
 
-// ============================
-// DOM Elements
-// ============================
 
 const vendorTable =
     document.getElementById("vendorTable");
@@ -45,9 +38,7 @@ const inactiveVendorCount =
 const averageVendorRating =
     document.getElementById("averageVendorRating");
 
-// ============================
-// Helper Functions
-// ============================
+
 
 async function apiFetch(
     url,
@@ -66,9 +57,7 @@ async function apiFetch(
 
 }
 
-// ============================
-// Logout
-// ============================
+
 
 function logout() {
 
@@ -99,9 +88,7 @@ if (sidebarLogout) {
 
 }
 
-// ============================
-// Toast
-// ============================
+
 
 function showToast(
     message,
@@ -144,9 +131,7 @@ function showToast(
 
 }
 
-// ============================
-// Loading Spinner
-// ============================
+
 
 function showLoading() {
 
@@ -165,9 +150,6 @@ function hideLoading() {
 
 
 
-// ============================================
-// Load All Vendors
-// ============================================
 
 async function loadVendors() {
 
@@ -213,9 +195,7 @@ async function loadVendors() {
 
 }
 
-// ============================================
-// Render Vendor Table
-// ============================================
+
 
 function renderVendorTable(vendors) {
 
@@ -303,9 +283,7 @@ function renderVendorTable(vendors) {
 
 }
 
-// ============================================
-// Vendor Statistics
-// ============================================
+
 
 function updateVendorStatistics(vendors) {
 
@@ -343,9 +321,6 @@ function updateVendorStatistics(vendors) {
 
 }
 
-// ============================================
-// Auto Load
-// ============================================
 
 document.addEventListener(
     "DOMContentLoaded",
@@ -358,9 +333,6 @@ document.addEventListener(
 
 
 
-// ============================================
-// Search Vendors
-// ============================================
 
 async function searchVendors() {
 
@@ -430,9 +402,7 @@ if (searchInput) {
 
 }
 
-// ============================================
-// Delete Vendor
-// ============================================
+
 
 let selectedVendorId = null;
 
@@ -571,132 +541,9 @@ if (confirmDelete) {
 
 
 
-// ============================================
-// Add Vendor
-// ============================================
-
-// if (vendorForm) {
-
-//     vendorForm.addEventListener(
-//         "submit",
-//         async (e) => {
-
-//             e.preventDefault();
-
-//             const vendorData = {
-
-//                 vendorName:
-//                     document.getElementById("vendorName").value.trim(),
-
-//                 companyName:
-//                     document.getElementById("companyName").value.trim(),
-
-//                 email:
-//                     document.getElementById("email").value.trim(),
-
-//                 phone:
-//                     document.getElementById("phone").value.trim(),
-
-//                 address:
-//                     document.getElementById("address").value.trim(),
-
-//                 city:
-//                     document.getElementById("city").value.trim(),
-
-//                 state:
-//                     document.getElementById("state").value.trim(),
-
-//                 country:
-//                     document.getElementById("country").value.trim(),
-
-//                 pincode:
-//                     document.getElementById("pincode").value.trim(),
-
-//                 gstNumber:
-//                     document.getElementById("gstNumber").value.trim(),
-
-//                 category:
-//                     document.getElementById("category").value,
-
-//                 status:
-//                     document.getElementById("status").value,
-
-//                 notes:
-//                     document.getElementById("notes").value.trim()
-
-//             };
-
-//             try {
-
-//                 showLoading();
-
-//                 const response =
-//                     await fetch(
-//                         `${API_BASE}/vendors`,
-//                         {
-//                             method: "POST",
-//                             headers,
-//                             body: JSON.stringify(vendorData)
-//                         }
-//                     );
-
-//                 const result =
-//                     await response.json();
-
-//                 hideLoading();
-
-//                 if (result.success) {
-
-//                     showToast(
-//                         "Vendor added successfully.",
-//                         "#16a34a"
-//                     );
-
-//                     vendorForm.reset();
-
-//                     setTimeout(() => {
-
-//                         window.location.href =
-//                             "/vendors";
-
-//                     }, 1200);
-
-//                 } else {
-
-//                     showToast(
-//                         result.message,
-//                         "#dc2626"
-//                     );
-
-//                 }
-
-//             } catch (error) {
-
-//                 hideLoading();
-
-//                 console.error(error);
-
-//                 showToast(
-//                     "Unable to add vendor.",
-//                     "#dc2626"
-//                 );
-
-//             }
-
-//         }
-
-//     );
-
-// }
-
-// ============================================
-// Edit Vendor
-// ============================================
 
 
-// ============================================
-// Add / Update Vendor
-// ============================================
+
 
 if (vendorForm) {
 
@@ -880,9 +727,7 @@ async function editVendor(id) {
 
 }
 
-// ============================================
-// Edit Mode
-// ============================================
+
 
 async function initializeEditMode() {
 
@@ -970,9 +815,7 @@ if (pageHeading) {
 }
 }
 
-// ============================================
-// Initialize
-// ============================================
+
 
 document.addEventListener(
     "DOMContentLoaded",

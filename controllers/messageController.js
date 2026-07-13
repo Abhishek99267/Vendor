@@ -1,10 +1,6 @@
 const Message = require("../models/Message");
 const Vendor = require("../models/Vendor");
 
-// ==========================================
-// Send Message
-// ==========================================
-
 const sendMessage = async (req, res) => {
   try {
     const {
@@ -51,9 +47,7 @@ const sendMessage = async (req, res) => {
   }
 };
 
-// ==========================================
-// Get All Messages
-// ==========================================
+
 
 const getAllMessages = async (req, res) => {
 
@@ -87,9 +81,7 @@ const getAllMessages = async (req, res) => {
 
 };
 
-// ==========================================
-// Get Messages By Vendor
-// ==========================================
+
 
 const getVendorMessages = async (req, res) => {
 
@@ -125,9 +117,7 @@ const getVendorMessages = async (req, res) => {
 
 };
 
-// ==========================================
-// Get Message By ID
-// ==========================================
+
 
 const getMessageById = async (req, res) => {
 
@@ -170,9 +160,7 @@ const getMessageById = async (req, res) => {
   }
 
 };
-// ==========================================
-// Mark Message as Read
-// ==========================================
+
 
 const markMessageAsRead = async (req, res) => {
   try {
@@ -206,9 +194,6 @@ const markMessageAsRead = async (req, res) => {
   }
 };
 
-// ==========================================
-// Delete Message
-// ==========================================
 
 const deleteMessage = async (req, res) => {
 
@@ -249,9 +234,7 @@ const deleteMessage = async (req, res) => {
 
 };
 
-// ==========================================
-// Message Statistics
-// ==========================================
+
 
 const messageStats = async (req, res) => {
 
@@ -300,9 +283,7 @@ const messageStats = async (req, res) => {
 
 };
 
-// ==========================================
-// Recent Messages
-// ==========================================
+
 
 const recentMessages = async (req, res) => {
 
@@ -335,9 +316,7 @@ const recentMessages = async (req, res) => {
 
 };
 
-// ==========================================
-// Export Controllers
-// ==========================================
+
 
 module.exports = {
 

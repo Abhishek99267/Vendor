@@ -17,15 +17,10 @@ const messageRoutes = require("./routes/messageRoutes");
 
 const app = express();
 
-// ======================================================
-// Database Connection
-// ======================================================
+
 
 connectDB();
 
-// ======================================================
-// Middlewares
-// ======================================================
 
 app.use(cors());
 
@@ -37,11 +32,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, "public")));
 
-// ======================================================
-// HTML Routes
-// ======================================================
-// Each page is served from /views as a clean, extension-less
-// URL. Add a new { route, file } entry here to expose another page.
+
 
 const pageRoutes = [
     { route: "/", file: "index.html" },
@@ -66,9 +57,7 @@ pageRoutes.forEach(({ route, file }) => {
 
 });
 
-// ======================================================
-// API Routes
-// ======================================================
+
 
 app.use("/api/auth", authRoutes);
 
@@ -80,9 +69,7 @@ app.use("/api/performance", performanceRoutes);
 
 app.use("/api/messages", messageRoutes);
 
-// ======================================================
-// Health Check
-// ======================================================
+
 
 app.get("/api", (req, res) => {
 
@@ -96,9 +83,7 @@ app.get("/api", (req, res) => {
 
 });
 
-// ======================================================
-// 404 Route
-// ======================================================
+
 
 app.use((req, res) => {
 
@@ -112,9 +97,7 @@ app.use((req, res) => {
 
 });
 
-// ======================================================
-// Global Error Handler
-// ======================================================
+
 
 app.use((err, req, res, next) => {
 
@@ -130,15 +113,11 @@ app.use((err, req, res, next) => {
 
 });
 
-// ======================================================
-// Server
-// ======================================================
+
 
 const PORT = process.env.PORT || 5000;
 
-// Vercel (and any other serverless host) imports this file as a module and
-// handles listening itself — so only call app.listen() when this file is
-// run directly with `node server.js` / `npm start` / `npm run dev`.
+
 if (require.main === module) {
 
     app.listen(PORT, () => {
