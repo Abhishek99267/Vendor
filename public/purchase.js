@@ -899,7 +899,1041 @@
 // ======================================================
 
 // ======================================================
-// DOM Elements
+// DOM Elements first cut de diya
+// ======================================================
+
+// const purchaseForm = document.getElementById("purchaseForm");
+// const purchaseTable = document.getElementById("purchaseTable");
+
+// const vendorSelect = document.getElementById("vendor");
+// const quantityInput = document.getElementById("quantity");
+// const unitPriceInput = document.getElementById("unitPrice");
+// const totalAmountInput = document.getElementById("totalAmount");
+
+// const searchInput = document.getElementById("searchOrder");
+// const statusFilter = document.getElementById("statusFilter");
+// const searchBtn = document.getElementById("searchBtn");
+
+// const logoutBtn = document.getElementById("logoutBtn");
+// const sidebarLogout = document.getElementById("sidebarLogout");
+
+// // ======================================================
+// // Logout
+// // ======================================================
+
+// if (logoutBtn) {
+
+//     logoutBtn.addEventListener("click", logout);
+
+// }
+
+// if (sidebarLogout) {
+
+//     sidebarLogout.addEventListener("click", logout);
+
+// }
+
+// // ======================================================
+// // Auto Calculate Total
+// // ======================================================
+
+// function calculateTotal() {
+
+//     if (
+//         !quantityInput ||
+//         !unitPriceInput ||
+//         !totalAmountInput
+//     ) return;
+
+//     const quantity =
+//         Number(quantityInput.value) || 0;
+
+//     const unitPrice =
+//         Number(unitPriceInput.value) || 0;
+
+//     totalAmountInput.value =
+//         quantity * unitPrice;
+
+// }
+
+// if (quantityInput) {
+
+//     quantityInput.addEventListener(
+//         "input",
+//         calculateTotal
+//     );
+
+// }
+
+// if (unitPriceInput) {
+
+//     unitPriceInput.addEventListener(
+//         "input",
+//         calculateTotal
+//     );
+
+// }
+
+// // ======================================================
+// // Load Vendors Dropdown
+// // ======================================================
+
+// async function loadVendorsDropdown() {
+
+//     if (!vendorSelect) return;
+
+//     try {
+
+//         const result = await apiFetch(
+
+//             `${API_BASE}/vendors`
+
+//         );
+
+//         vendorSelect.innerHTML =
+//             `<option value="">Select Vendor</option>`;
+
+//         result.data.forEach(vendor => {
+
+//             vendorSelect.innerHTML += `
+
+//             <option value="${vendor._id}">
+
+//                 ${vendor.vendorName}
+//                 (${vendor.companyName})
+
+//             </option>
+
+//             `;
+
+//         });
+
+//     }
+
+//     catch (error) {
+
+//         console.error(error);
+
+//         showToast(
+
+//             "Unable to load vendors.",
+
+//             "#dc2626"
+
+//         );
+
+//     }
+
+// }
+
+// // ======================================================
+// // Load Purchase Orders
+// // ======================================================
+
+// async function loadPurchaseOrders() {
+
+//     if (!purchaseTable) return;
+
+//     try {
+
+//         showLoading();
+
+//         const result =
+//             await apiFetch(
+
+//                 `${API_BASE}/orders`
+
+//             );
+
+//         hideLoading();
+
+//         renderPurchaseTable(
+
+//             result.data
+
+//         );
+
+//         updateStatistics(
+
+//             result.data
+
+//         );
+
+//     }
+
+//     catch (error) {
+
+//         hideLoading();
+
+//         console.error(error);
+
+//         showToast(
+
+//             "Unable to load purchase orders.",
+
+//             "#dc2626"
+
+//         );
+
+//     }
+
+// }
+
+// // ======================================================
+// // Render Purchase Table
+// // ======================================================
+
+// function renderPurchaseTable(orders) {
+
+//     if (!purchaseTable) return;
+
+//     if (!orders || orders.length === 0) {
+
+//         purchaseTable.innerHTML = `
+
+//             <tr>
+
+//                 <td colspan="7"
+//                     style="text-align:center;">
+
+//                     No Purchase Orders Found
+
+//                 </td>
+
+//             </tr>
+
+//         `;
+
+//         return;
+
+//     }
+
+//     purchaseTable.innerHTML = "";
+
+//     orders.forEach(order => {
+
+//         purchaseTable.innerHTML += `
+
+//         <tr>
+
+//             <td>${order.poNumber}</td>
+
+//             <td>
+
+//                 ${order.vendor?.vendorName || "N/A"}
+
+//             </td>
+
+//             <td>${order.productName}</td>
+
+//             <td>${order.quantity}</td>
+
+//             <td>
+
+//                 ${formatCurrency(order.totalAmount)}
+
+//             </td>
+
+//             <td>
+
+//                 ${getStatusBadge(order.status)}
+
+//             </td>
+
+//             <td>
+
+//                 <button
+//                     class="btn btn-primary btn-sm"
+//                     onclick="editPurchase('${order._id}')">
+
+//                     Edit
+
+//                 </button>
+
+//                 <button
+//                     class="btn btn-danger btn-sm"
+//                     onclick="deletePurchase('${order._id}')">
+
+//                     Delete
+
+//                 </button>
+
+//             </td>
+
+//         </tr>
+
+//         `;
+
+//     });
+
+// }
+
+// // ======================================================
+// // Status Badge
+// // ======================================================
+
+// function getStatusBadge(status) {
+
+//     switch (status) {
+
+//         case "Pending":
+
+//             return `<span class="badge badge-warning">
+//                         Pending
+//                     </span>`;
+
+//         case "Approved":
+
+//             return `<span class="badge badge-primary">
+//                         Approved
+//                     </span>`;
+
+//         case "Delivered":
+
+//             return `<span class="badge badge-success">
+//                         Delivered
+//                     </span>`;
+
+//         case "Cancelled":
+
+//             return `<span class="badge badge-danger">
+//                         Cancelled
+//                     </span>`;
+
+//         default:
+
+//             return status;
+
+//     }
+
+// }
+
+// // ======================================================
+// // Statistics
+// // ======================================================
+
+// function updateStatistics(orders) {
+
+//     const totalOrders =
+//         document.getElementById("totalOrders");
+
+//     const pendingOrders =
+//         document.getElementById("pendingOrders");
+
+//     const completedOrders =
+//         document.getElementById("completedOrders");
+
+//     const purchaseAmount =
+//         document.getElementById("purchaseAmount");
+
+//     if (totalOrders) {
+
+//         totalOrders.innerText = orders.length;
+
+//     }
+
+//     if (pendingOrders) {
+
+//         pendingOrders.innerText =
+
+//             orders.filter(
+
+//                 order => order.status === "Pending"
+
+//             ).length;
+
+//     }
+
+//     if (completedOrders) {
+
+//         completedOrders.innerText =
+
+//             orders.filter(
+
+//                 order =>
+
+//                     order.status === "Delivered"
+
+//             ).length;
+
+//     }
+
+//     if (purchaseAmount) {
+
+//         const total = orders.reduce(
+
+//             (sum, order) =>
+
+//                 sum + Number(order.totalAmount),
+
+//             0
+
+//         );
+
+//         purchaseAmount.innerText =
+
+//             formatCurrency(total);
+
+//     }
+
+//     updateMonthlyReport(orders);
+
+// }
+
+// // ======================================================
+// // Monthly Report
+// // ======================================================
+
+// function updateMonthlyReport(orders) {
+
+//     const monthlyOrders =
+//         document.getElementById("monthlyOrders");
+
+//     const monthlyAmount =
+//         document.getElementById("monthlyAmount");
+
+//     if (!monthlyOrders || !monthlyAmount) {
+
+//         return;
+
+//     }
+
+//     const today = new Date();
+
+//     const currentMonth = today.getMonth();
+
+//     const currentYear = today.getFullYear();
+
+//     const currentMonthOrders = orders.filter(order => {
+
+//         const orderDate = new Date(order.orderDate);
+
+//         return (
+
+//             orderDate.getMonth() === currentMonth &&
+
+//             orderDate.getFullYear() === currentYear
+
+//         );
+
+//     });
+
+//     monthlyOrders.innerText =
+
+//         currentMonthOrders.length;
+
+//     const total = currentMonthOrders.reduce(
+
+//         (sum, order) =>
+
+//             sum + Number(order.totalAmount),
+
+//         0
+
+//     );
+
+//     monthlyAmount.innerText =
+
+//         formatCurrency(total);
+
+// }
+
+// // ======================================================
+// // Search & Filter Purchase Orders
+// // ======================================================
+
+// let purchaseOrders = [];
+
+// async function refreshPurchaseOrders() {
+
+//     try {
+
+//         const result = await apiFetch(
+//             `${API_BASE}/orders`
+//         );
+
+//         purchaseOrders = result.data;
+
+//         applyFilters();
+
+//     }
+
+//     catch (error) {
+
+//         console.error(error);
+
+//         showToast(
+//             "Unable to refresh purchase orders.",
+//             "#dc2626"
+//         );
+
+//     }
+
+// }
+
+// function applyFilters() {
+
+//     let filtered = [...purchaseOrders];
+
+//     // Search
+
+//     if (searchInput && searchInput.value.trim()) {
+
+//         const keyword =
+//             searchInput.value
+//             .trim()
+//             .toLowerCase();
+
+//         filtered = filtered.filter(order =>
+
+//             order.poNumber
+//                 .toLowerCase()
+//                 .includes(keyword)
+
+//             ||
+
+//             order.productName
+//                 .toLowerCase()
+//                 .includes(keyword)
+
+//             ||
+
+//             (order.vendor?.vendorName || "")
+//                 .toLowerCase()
+//                 .includes(keyword)
+
+//         );
+
+//     }
+
+//     // Status Filter
+
+//     if (
+
+//         statusFilter &&
+
+//         statusFilter.value
+
+//     ) {
+
+//         filtered = filtered.filter(order =>
+
+//             order.status === statusFilter.value
+
+//         );
+
+//     }
+
+//     renderPurchaseTable(filtered);
+
+//     updateStatistics(filtered);
+
+// }
+
+// if (searchBtn) {
+
+//     searchBtn.addEventListener(
+
+//         "click",
+
+//         applyFilters
+
+//     );
+
+// }
+
+// if (searchInput) {
+
+//     searchInput.addEventListener(
+
+//         "keyup",
+
+//         applyFilters
+
+//     );
+
+// }
+
+// if (statusFilter) {
+
+//     statusFilter.addEventListener(
+
+//         "change",
+
+//         applyFilters
+
+//     );
+
+// }
+
+// // ======================================================
+// // Add / Update Purchase Order
+// // ======================================================
+
+// if (purchaseForm) {
+
+//     purchaseForm.addEventListener(
+
+//         "submit",
+
+//         async (e) => {
+
+//             e.preventDefault();
+
+//             // const purchaseData = {
+
+//             //     poNumber:
+//             //         document.getElementById("poNumber").value.trim(),
+
+//             //     vendor:
+//             //         document.getElementById("vendor").value,
+
+//             //     productName:
+//             //         document.getElementById("productName").value.trim(),
+
+//             //     category:
+//             //         document.getElementById("category").value,
+
+//             //     quantity:
+//             //         Number(document.getElementById("quantity").value),
+
+//             //     unitPrice:
+//             //         Number(document.getElementById("unitPrice").value),
+
+//             //     totalAmount:
+//             //         Number(document.getElementById("totalAmount").value),
+
+//             //     status:
+//             //         document.getElementById("status").value,
+
+//             //     orderDate:
+//             //         document.getElementById("orderDate").value,
+
+//             //     deliveryDate:
+//             //         document.getElementById("deliveryDate").value,
+
+//             //     notes:
+//             //         document.getElementById("notes").value.trim()
+
+//             // };
+//             const purchaseData = {
+
+//     purchaseOrderNo:
+//         document.getElementById("poNumber").value.trim(),
+
+//     vendor:
+//         document.getElementById("vendor").value,
+
+//     productName:
+//         document.getElementById("productName").value.trim(),
+
+//     category:
+//         document.getElementById("category").value,
+
+//     quantity:
+//         Number(document.getElementById("quantity").value),
+
+//     unitPrice:
+//         Number(document.getElementById("unitPrice").value),
+
+//     totalAmount:
+//         Number(document.getElementById("totalAmount").value),
+
+//     status:
+//         document.getElementById("status").value,
+
+//     orderDate:
+//         document.getElementById("orderDate").value,
+
+//     expectedDeliveryDate:
+//         document.getElementById("deliveryDate").value,
+
+//     notes:
+//         document.getElementById("notes").value.trim()
+
+// };
+
+//             const editPurchase = JSON.parse(
+
+//                 localStorage.getItem("editPurchase")
+
+//             );
+
+//             const isEditMode =
+
+//                 window.location.search.includes("edit=true")
+
+//                 &&
+
+//                 editPurchase;
+
+//             try {
+
+//                 showLoading();
+
+//                 let response;
+
+//                 if (isEditMode) {
+
+//                     response = await fetch(
+
+//                         `${API_BASE}/orders/${editPurchase._id}`,
+
+//                         {
+
+//                             method: "PUT",
+
+//                             headers,
+
+//                             body: JSON.stringify(
+
+//                                 purchaseData
+
+//                             )
+
+//                         }
+
+//                     );
+
+//                 }
+
+//                 else {
+
+//                     response = await fetch(
+
+//                         `${API_BASE}/orders`,
+
+//                         {
+
+//                             method: "POST",
+
+//                             headers,
+
+//                             body: JSON.stringify(
+
+//                                 purchaseData
+
+//                             )
+
+//                         }
+
+//                     );
+
+//                 }
+
+//                 const result =
+//                     await response.json();
+
+//                 hideLoading();
+
+//                 if (result.success) {
+
+//                     showToast(
+
+//                         isEditMode
+
+//                         ?
+
+//                         "Purchase Order Updated"
+
+//                         :
+
+//                         "Purchase Order Created",
+
+//                         "#16a34a"
+
+//                     );
+
+//                     localStorage.removeItem(
+
+//                         "editPurchase"
+
+//                     );
+
+//                     purchaseForm.reset();
+
+//                     setTimeout(() => {
+
+//                         window.location.href =
+
+//                             "/purchaseOrders";
+
+//                     }, 1000);
+
+//                 }
+
+//                 else {
+
+//                     showToast(
+
+//                         result.message,
+
+//                         "#dc2626"
+
+//                     );
+
+//                 }
+
+//             }
+
+//             catch (error) {
+
+//                 hideLoading();
+
+//                 console.error(error);
+
+//                 showToast(
+
+//                     "Unable to save purchase order.",
+
+//                     "#dc2626"
+
+//                 );
+
+//             }
+
+//         }
+
+//     );
+
+// }
+
+// // ======================================================
+// // Delete Purchase Order
+// // ======================================================
+
+// async function deletePurchase(id) {
+
+//     if (
+
+//         !confirmAction(
+
+//             "Delete this purchase order?"
+
+//         )
+
+//     ) {
+
+//         return;
+
+//     }
+
+//     try {
+
+//         showLoading();
+
+//         const response = await fetch(
+
+//             `${API_BASE}/orders/${id}`,
+
+//             {
+
+//                 method: "DELETE",
+
+//                 headers
+
+//             }
+
+//         );
+
+//         const result = await response.json();
+
+//         hideLoading();
+
+//         if (result.success) {
+
+//             showToast(
+
+//                 "Purchase Order Deleted",
+
+//                 "#16a34a"
+
+//             );
+
+//             refreshPurchaseOrders();
+
+//         }
+
+//         else {
+
+//             showToast(
+
+//                 result.message,
+
+//                 "#dc2626"
+
+//             );
+
+//         }
+
+//     }
+
+//     catch (error) {
+
+//         hideLoading();
+
+//         console.error(error);
+
+//         showToast(
+
+//             "Delete failed.",
+
+//             "#dc2626"
+
+//         );
+
+//     }
+
+// }
+
+// // ======================================================
+// // Edit Purchase Order
+// // ======================================================
+
+// async function editPurchase(id) {
+
+//     try {
+
+//         const result = await apiFetch(
+
+//             `${API_BASE}/orders/${id}`
+
+//         );
+
+//         localStorage.setItem(
+
+//             "editPurchase",
+
+//             JSON.stringify(result.data)
+
+//         );
+
+//         window.location.href =
+
+//             "/addPurchase.html?edit=true";
+
+//     }
+
+//     catch (error) {
+
+//         console.error(error);
+
+//         showToast(
+
+//             "Unable to load purchase order.",
+
+//             "#dc2626"
+
+//         );
+
+//     }
+
+// }
+
+// // ======================================================
+// // Initialize Edit Mode
+// // ======================================================
+
+// function initializeEditMode() {
+
+//     if (!purchaseForm) return;
+
+//     const purchase = JSON.parse(
+
+//         localStorage.getItem("editPurchase")
+
+//     );
+
+//     if (!purchase) return;
+
+//     document.title =
+
+//         "Update Purchase Order | VendorLink";
+
+//     document.getElementById("pageHeading").innerText =
+
+//         "Update Purchase Order";
+
+//     purchaseForm.querySelector(
+
+//         "button[type='submit']"
+
+//     ).innerText =
+
+//         "Update Purchase Order";
+
+//     document.getElementById("poNumber").value =
+//         purchase.poNumber;
+
+//     document.getElementById("vendor").value =
+//         purchase.vendor._id || purchase.vendor;
+
+//     document.getElementById("productName").value =
+//         purchase.productName;
+
+//     document.getElementById("category").value =
+//         purchase.category;
+
+//     document.getElementById("quantity").value =
+//         purchase.quantity;
+
+//     document.getElementById("unitPrice").value =
+//         purchase.unitPrice;
+
+//     document.getElementById("totalAmount").value =
+//         purchase.totalAmount;
+
+//     document.getElementById("status").value =
+//         purchase.status;
+
+//     document.getElementById("orderDate").value =
+//         purchase.orderDate.substring(0, 10);
+
+//     document.getElementById("deliveryDate").value =
+//         purchase.deliveryDate.substring(0, 10);
+
+//     document.getElementById("notes").value =
+//         purchase.notes || "";
+
+// }
+
+// // ======================================================
+// // Initialize
+// // ======================================================
+
+// document.addEventListener(
+
+//     "DOMContentLoaded",
+
+//     async () => {
+
+//         if (vendorSelect) {
+
+//             await loadVendorsDropdown();
+
+//             initializeEditMode();
+
+//         }
+
+//         if (purchaseTable) {
+
+//             await refreshPurchaseOrders();
+
+//         }
+
+//     }
+
+// );
+
+
+
+
+
+
+// dusra cut
+// ======================================================
+// PURCHASE.JS
+// VendorLink Purchase Module
 // ======================================================
 
 const purchaseForm = document.getElementById("purchaseForm");
@@ -917,21 +1951,15 @@ const searchBtn = document.getElementById("searchBtn");
 const logoutBtn = document.getElementById("logoutBtn");
 const sidebarLogout = document.getElementById("sidebarLogout");
 
+let purchaseOrders = [];
+
 // ======================================================
 // Logout
 // ======================================================
 
-if (logoutBtn) {
+if (logoutBtn) logoutBtn.addEventListener("click", logout);
 
-    logoutBtn.addEventListener("click", logout);
-
-}
-
-if (sidebarLogout) {
-
-    sidebarLogout.addEventListener("click", logout);
-
-}
+if (sidebarLogout) sidebarLogout.addEventListener("click", logout);
 
 // ======================================================
 // Auto Calculate Total
@@ -939,61 +1967,38 @@ if (sidebarLogout) {
 
 function calculateTotal() {
 
-    if (
-        !quantityInput ||
-        !unitPriceInput ||
-        !totalAmountInput
-    ) return;
+    const qty = Number(quantityInput?.value) || 0;
 
-    const quantity =
-        Number(quantityInput.value) || 0;
+    const price = Number(unitPriceInput?.value) || 0;
 
-    const unitPrice =
-        Number(unitPriceInput.value) || 0;
+    if(totalAmountInput){
 
-    totalAmountInput.value =
-        quantity * unitPrice;
+        totalAmountInput.value = qty * price;
+
+    }
 
 }
 
-if (quantityInput) {
+quantityInput?.addEventListener("input", calculateTotal);
 
-    quantityInput.addEventListener(
-        "input",
-        calculateTotal
-    );
-
-}
-
-if (unitPriceInput) {
-
-    unitPriceInput.addEventListener(
-        "input",
-        calculateTotal
-    );
-
-}
+unitPriceInput?.addEventListener("input", calculateTotal);
 
 // ======================================================
-// Load Vendors Dropdown
+// Load Vendors
 // ======================================================
 
-async function loadVendorsDropdown() {
+async function loadVendorsDropdown(){
 
-    if (!vendorSelect) return;
+    if(!vendorSelect) return;
 
-    try {
+    try{
 
-        const result = await apiFetch(
-
-            `${API_BASE}/vendors`
-
-        );
+        const result = await apiFetch(`${API_BASE}/vendors`);
 
         vendorSelect.innerHTML =
-            `<option value="">Select Vendor</option>`;
+        `<option value="">Select Vendor</option>`;
 
-        result.data.forEach(vendor => {
+        result.data.forEach(vendor=>{
 
             vendorSelect.innerHTML += `
 
@@ -1010,16 +2015,13 @@ async function loadVendorsDropdown() {
 
     }
 
-    catch (error) {
+    catch(err){
 
-        console.error(error);
+        console.error(err);
 
         showToast(
-
-            "Unable to load vendors.",
-
+            "Unable to load vendors",
             "#dc2626"
-
         );
 
     }
@@ -1027,52 +2029,35 @@ async function loadVendorsDropdown() {
 }
 
 // ======================================================
-// Load Purchase Orders
+// Load Orders
 // ======================================================
 
-async function loadPurchaseOrders() {
+async function refreshPurchaseOrders(){
 
-    if (!purchaseTable) return;
-
-    try {
+    try{
 
         showLoading();
 
         const result =
-            await apiFetch(
+        await apiFetch(`${API_BASE}/orders`);
 
-                `${API_BASE}/orders`
-
-            );
+        purchaseOrders = result.data;
 
         hideLoading();
 
-        renderPurchaseTable(
-
-            result.data
-
-        );
-
-        updateStatistics(
-
-            result.data
-
-        );
+        applyFilters();
 
     }
 
-    catch (error) {
+    catch(err){
 
         hideLoading();
 
-        console.error(error);
+        console.error(err);
 
         showToast(
-
-            "Unable to load purchase orders.",
-
+            "Unable to load purchase orders",
             "#dc2626"
-
         );
 
     }
@@ -1080,27 +2065,26 @@ async function loadPurchaseOrders() {
 }
 
 // ======================================================
-// Render Purchase Table
+// Render Table
 // ======================================================
 
-function renderPurchaseTable(orders) {
+function renderPurchaseTable(orders){
 
-    if (!purchaseTable) return;
+    if(!purchaseTable) return;
 
-    if (!orders || orders.length === 0) {
+    if(!orders.length){
 
-        purchaseTable.innerHTML = `
+        purchaseTable.innerHTML=`
 
-            <tr>
+        <tr>
 
-                <td colspan="7"
-                    style="text-align:center;">
+            <td colspan="8" style="text-align:center">
 
-                    No Purchase Orders Found
+                No Purchase Orders Found
 
-                </td>
+            </td>
 
-            </tr>
+        </tr>
 
         `;
 
@@ -1108,61 +2092,80 @@ function renderPurchaseTable(orders) {
 
     }
 
-    purchaseTable.innerHTML = "";
+    purchaseTable.innerHTML="";
 
-    orders.forEach(order => {
+    orders.forEach(order=>{
 
         purchaseTable.innerHTML += `
 
-        <tr>
+<tr>
 
-            <td>${order.poNumber}</td>
+<td>
 
-            <td>
+${order.purchaseOrderNo}
 
-                ${order.vendor?.vendorName || "N/A"}
+</td>
 
-            </td>
+<td>
 
-            <td>${order.productName}</td>
+${order.vendor?.vendorName || "-"}
 
-            <td>${order.quantity}</td>
+</td>
 
-            <td>
+<td>
 
-                ${formatCurrency(order.totalAmount)}
+${order.productName}
 
-            </td>
+</td>
 
-            <td>
+<td>
 
-                ${getStatusBadge(order.status)}
+${order.quantity}
 
-            </td>
+</td>
 
-            <td>
+<td>
 
-                <button
-                    class="btn btn-primary btn-sm"
-                    onclick="editPurchase('${order._id}')">
+${formatCurrency(order.totalAmount)}
 
-                    Edit
+</td>
 
-                </button>
+<td>
 
-                <button
-                    class="btn btn-danger btn-sm"
-                    onclick="deletePurchase('${order._id}')">
+${getStatusBadge(order.status)}
 
-                    Delete
+</td>
 
-                </button>
+<td>
 
-            </td>
+${new Date(order.expectedDeliveryDate)
+.toLocaleDateString()}
 
-        </tr>
+</td>
 
-        `;
+<td>
+
+<button
+class="btn btn-primary btn-sm"
+onclick="editPurchase('${order._id}')">
+
+Edit
+
+</button>
+
+<button
+class="btn btn-danger btn-sm"
+onclick="deletePurchase('${order._id}')">
+
+Delete
+
+</button>
+
+</td>
+
+</tr>
+
+`;
 
     });
 
@@ -1172,253 +2175,163 @@ function renderPurchaseTable(orders) {
 // Status Badge
 // ======================================================
 
-function getStatusBadge(status) {
+function getStatusBadge(status){
 
-    switch (status) {
+    switch(status){
 
         case "Pending":
 
-            return `<span class="badge badge-warning">
-                        Pending
-                    </span>`;
+        return `<span class="badge badge-warning">
+        Pending
+        </span>`;
 
         case "Approved":
 
-            return `<span class="badge badge-primary">
-                        Approved
-                    </span>`;
+        return `<span class="badge badge-primary">
+        Approved
+        </span>`;
+
+        case "Processing":
+
+        return `<span class="badge badge-info">
+        Processing
+        </span>`;
+
+        case "Shipped":
+
+        return `<span class="badge badge-info">
+        Shipped
+        </span>`;
 
         case "Delivered":
 
-            return `<span class="badge badge-success">
-                        Delivered
-                    </span>`;
+        return `<span class="badge badge-success">
+        Delivered
+        </span>`;
 
         case "Cancelled":
 
-            return `<span class="badge badge-danger">
-                        Cancelled
-                    </span>`;
+        return `<span class="badge badge-danger">
+        Cancelled
+        </span>`;
 
         default:
 
-            return status;
+        return status;
 
     }
 
 }
-
 // ======================================================
 // Statistics
 // ======================================================
 
-function updateStatistics(orders) {
+function updateStatistics(orders){
 
     const totalOrders =
-        document.getElementById("totalOrders");
+    document.getElementById("totalOrders");
 
     const pendingOrders =
-        document.getElementById("pendingOrders");
+    document.getElementById("pendingOrders");
 
     const completedOrders =
-        document.getElementById("completedOrders");
+    document.getElementById("completedOrders");
 
     const purchaseAmount =
-        document.getElementById("purchaseAmount");
+    document.getElementById("purchaseAmount");
 
-    if (totalOrders) {
+    if(totalOrders){
 
-        totalOrders.innerText = orders.length;
+        totalOrders.innerText =
+        orders.length;
 
     }
 
-    if (pendingOrders) {
+    if(pendingOrders){
 
         pendingOrders.innerText =
 
-            orders.filter(
+        orders.filter(order=>
 
-                order => order.status === "Pending"
+            order.status==="Pending"
 
-            ).length;
+        ).length;
 
     }
 
-    if (completedOrders) {
+    if(completedOrders){
 
         completedOrders.innerText =
 
-            orders.filter(
+        orders.filter(order=>
 
-                order =>
+            order.status==="Delivered"
 
-                    order.status === "Delivered"
-
-            ).length;
+        ).length;
 
     }
 
-    if (purchaseAmount) {
+    if(purchaseAmount){
 
         const total = orders.reduce(
 
-            (sum, order) =>
+            (sum,order)=>
 
-                sum + Number(order.totalAmount),
+            sum + Number(order.totalAmount),
 
             0
 
         );
 
         purchaseAmount.innerText =
-
-            formatCurrency(total);
-
-    }
-
-    updateMonthlyReport(orders);
-
-}
-
-// ======================================================
-// Monthly Report
-// ======================================================
-
-function updateMonthlyReport(orders) {
-
-    const monthlyOrders =
-        document.getElementById("monthlyOrders");
-
-    const monthlyAmount =
-        document.getElementById("monthlyAmount");
-
-    if (!monthlyOrders || !monthlyAmount) {
-
-        return;
-
-    }
-
-    const today = new Date();
-
-    const currentMonth = today.getMonth();
-
-    const currentYear = today.getFullYear();
-
-    const currentMonthOrders = orders.filter(order => {
-
-        const orderDate = new Date(order.orderDate);
-
-        return (
-
-            orderDate.getMonth() === currentMonth &&
-
-            orderDate.getFullYear() === currentYear
-
-        );
-
-    });
-
-    monthlyOrders.innerText =
-
-        currentMonthOrders.length;
-
-    const total = currentMonthOrders.reduce(
-
-        (sum, order) =>
-
-            sum + Number(order.totalAmount),
-
-        0
-
-    );
-
-    monthlyAmount.innerText =
-
         formatCurrency(total);
 
-}
-
-// ======================================================
-// Search & Filter Purchase Orders
-// ======================================================
-
-let purchaseOrders = [];
-
-async function refreshPurchaseOrders() {
-
-    try {
-
-        const result = await apiFetch(
-            `${API_BASE}/orders`
-        );
-
-        purchaseOrders = result.data;
-
-        applyFilters();
-
-    }
-
-    catch (error) {
-
-        console.error(error);
-
-        showToast(
-            "Unable to refresh purchase orders.",
-            "#dc2626"
-        );
-
     }
 
 }
 
-function applyFilters() {
+// ======================================================
+// Search + Filter
+// ======================================================
 
-    let filtered = [...purchaseOrders];
+function applyFilters(){
 
-    // Search
+    let filtered=[...purchaseOrders];
 
-    if (searchInput && searchInput.value.trim()) {
+    if(searchInput && searchInput.value.trim()){
 
         const keyword =
-            searchInput.value
-            .trim()
-            .toLowerCase();
+        searchInput.value
+        .toLowerCase()
+        .trim();
 
-        filtered = filtered.filter(order =>
+        filtered = filtered.filter(order=>
 
-            order.poNumber
-                .toLowerCase()
-                .includes(keyword)
+            order.purchaseOrderNo
+            .toLowerCase()
+            .includes(keyword)
 
             ||
 
             order.productName
-                .toLowerCase()
-                .includes(keyword)
+            .toLowerCase()
+            .includes(keyword)
 
             ||
 
             (order.vendor?.vendorName || "")
-                .toLowerCase()
-                .includes(keyword)
+            .toLowerCase()
+            .includes(keyword)
 
         );
 
     }
 
-    // Status Filter
+    if(statusFilter && statusFilter.value){
 
-    if (
+        filtered = filtered.filter(order=>
 
-        statusFilter &&
-
-        statusFilter.value
-
-    ) {
-
-        filtered = filtered.filter(order =>
-
-            order.status === statusFilter.value
+            order.status===statusFilter.value
 
         );
 
@@ -1430,259 +2343,267 @@ function applyFilters() {
 
 }
 
-if (searchBtn) {
+searchBtn?.addEventListener(
 
-    searchBtn.addEventListener(
+"click",
 
-        "click",
+applyFilters
 
-        applyFilters
+);
 
-    );
+searchInput?.addEventListener(
+
+"keyup",
+
+applyFilters
+
+);
+
+statusFilter?.addEventListener(
+
+"change",
+
+applyFilters
+
+);
+
+// ======================================================
+// CREATE / UPDATE PURCHASE ORDER
+// ======================================================
+
+if(purchaseForm){
+
+purchaseForm.addEventListener(
+
+"submit",
+
+async(e)=>{
+
+e.preventDefault();
+
+const purchaseData={
+
+vendor:
+
+document.getElementById("vendor").value,
+
+purchaseOrderNo:
+
+document.getElementById("poNumber")
+.value.trim(),
+
+productName:
+
+document.getElementById("productName")
+.value.trim(),
+
+description:
+
+document.getElementById("notes")
+.value.trim(),
+
+quantity:
+
+Number(
+document.getElementById("quantity").value
+),
+
+unitPrice:
+
+Number(
+document.getElementById("unitPrice").value
+),
+
+totalAmount:
+
+Number(
+document.getElementById("totalAmount").value
+),
+
+orderDate:
+
+document.getElementById("orderDate").value,
+
+expectedDeliveryDate:
+
+document.getElementById("deliveryDate").value,
+
+status:
+
+document.getElementById("status").value,
+
+paymentStatus:"Pending",
+
+remarks:
+
+document.getElementById("notes")
+.value.trim()
+
+};
+
+const editData=
+
+JSON.parse(
+
+localStorage.getItem(
+"editPurchase"
+)
+
+);
+
+const editMode=
+
+window.location.search.includes("edit=true")
+
+&&
+
+editData;
+
+try{
+
+showLoading();
+
+let response;
+
+if(editMode){
+
+response=await fetch(
+
+`${API_BASE}/orders/${editData._id}`,
+
+{
+
+method:"PUT",
+
+headers,
+
+body:JSON.stringify(
+
+purchaseData
+
+)
 
 }
 
-if (searchInput) {
-
-    searchInput.addEventListener(
-
-        "keyup",
-
-        applyFilters
-
-    );
+);
 
 }
 
-if (statusFilter) {
+else{
 
-    statusFilter.addEventListener(
+response=await fetch(
 
-        "change",
+`${API_BASE}/orders`,
 
-        applyFilters
+{
 
-    );
+method:"POST",
+
+headers,
+
+body:JSON.stringify(
+
+purchaseData
+
+)
+
+}
+
+);
+
+}
+
+const result=
+
+await response.json();
+
+hideLoading();
+
+if(result.success){
+
+showToast(
+
+editMode
+
+?
+
+"Purchase Order Updated"
+
+:
+
+"Purchase Order Created",
+
+"#16a34a"
+
+);
+
+localStorage.removeItem(
+
+"editPurchase"
+
+);
+
+purchaseForm.reset();
+
+setTimeout(()=>{
+
+window.location.href=
+
+"/purchaseOrders";
+
+},800);
+
+}
+
+else{
+
+showToast(
+
+result.message,
+
+"#dc2626"
+
+);
+
+}
+
+}
+
+catch(error){
+
+hideLoading();
+
+console.error(error);
+
+showToast(
+
+"Unable to save purchase order.",
+
+"#dc2626"
+
+);
+
+}
+
+}
+
+);
 
 }
 
 // ======================================================
-// Add / Update Purchase Order
+// DELETE PURCHASE ORDER
 // ======================================================
 
-if (purchaseForm) {
+async function deletePurchase(id){
 
-    purchaseForm.addEventListener(
-
-        "submit",
-
-        async (e) => {
-
-            e.preventDefault();
-
-            const purchaseData = {
-
-                poNumber:
-                    document.getElementById("poNumber").value.trim(),
-
-                vendor:
-                    document.getElementById("vendor").value,
-
-                productName:
-                    document.getElementById("productName").value.trim(),
-
-                category:
-                    document.getElementById("category").value,
-
-                quantity:
-                    Number(document.getElementById("quantity").value),
-
-                unitPrice:
-                    Number(document.getElementById("unitPrice").value),
-
-                totalAmount:
-                    Number(document.getElementById("totalAmount").value),
-
-                status:
-                    document.getElementById("status").value,
-
-                orderDate:
-                    document.getElementById("orderDate").value,
-
-                deliveryDate:
-                    document.getElementById("deliveryDate").value,
-
-                notes:
-                    document.getElementById("notes").value.trim()
-
-            };
-
-            const editPurchase = JSON.parse(
-
-                localStorage.getItem("editPurchase")
-
-            );
-
-            const isEditMode =
-
-                window.location.search.includes("edit=true")
-
-                &&
-
-                editPurchase;
-
-            try {
-
-                showLoading();
-
-                let response;
-
-                if (isEditMode) {
-
-                    response = await fetch(
-
-                        `${API_BASE}/orders/${editPurchase._id}`,
-
-                        {
-
-                            method: "PUT",
-
-                            headers,
-
-                            body: JSON.stringify(
-
-                                purchaseData
-
-                            )
-
-                        }
-
-                    );
-
-                }
-
-                else {
-
-                    response = await fetch(
-
-                        `${API_BASE}/orders`,
-
-                        {
-
-                            method: "POST",
-
-                            headers,
-
-                            body: JSON.stringify(
-
-                                purchaseData
-
-                            )
-
-                        }
-
-                    );
-
-                }
-
-                const result =
-                    await response.json();
-
-                hideLoading();
-
-                if (result.success) {
-
-                    showToast(
-
-                        isEditMode
-
-                        ?
-
-                        "Purchase Order Updated"
-
-                        :
-
-                        "Purchase Order Created",
-
-                        "#16a34a"
-
-                    );
-
-                    localStorage.removeItem(
-
-                        "editPurchase"
-
-                    );
-
-                    purchaseForm.reset();
-
-                    setTimeout(() => {
-
-                        window.location.href =
-
-                            "/purchaseOrders";
-
-                    }, 1000);
-
-                }
-
-                else {
-
-                    showToast(
-
-                        result.message,
-
-                        "#dc2626"
-
-                    );
-
-                }
-
-            }
-
-            catch (error) {
-
-                hideLoading();
-
-                console.error(error);
-
-                showToast(
-
-                    "Unable to save purchase order.",
-
-                    "#dc2626"
-
-                );
-
-            }
-
-        }
-
+    const confirmDelete = confirm(
+        "Are you sure you want to delete this Purchase Order?"
     );
 
-}
+    if(!confirmDelete) return;
 
-// ======================================================
-// Delete Purchase Order
-// ======================================================
-
-async function deletePurchase(id) {
-
-    if (
-
-        !confirmAction(
-
-            "Delete this purchase order?"
-
-        )
-
-    ) {
-
-        return;
-
-    }
-
-    try {
+    try{
 
         showLoading();
 
@@ -1692,7 +2613,7 @@ async function deletePurchase(id) {
 
             {
 
-                method: "DELETE",
+                method:"DELETE",
 
                 headers
 
@@ -1704,11 +2625,11 @@ async function deletePurchase(id) {
 
         hideLoading();
 
-        if (result.success) {
+        if(result.success){
 
             showToast(
 
-                "Purchase Order Deleted",
+                "Purchase Order Deleted Successfully",
 
                 "#16a34a"
 
@@ -1718,7 +2639,7 @@ async function deletePurchase(id) {
 
         }
 
-        else {
+        else{
 
             showToast(
 
@@ -1732,7 +2653,7 @@ async function deletePurchase(id) {
 
     }
 
-    catch (error) {
+    catch(error){
 
         hideLoading();
 
@@ -1751,18 +2672,22 @@ async function deletePurchase(id) {
 }
 
 // ======================================================
-// Edit Purchase Order
+// EDIT PURCHASE ORDER
 // ======================================================
 
-async function editPurchase(id) {
+async function editPurchase(id){
 
-    try {
+    try{
+
+        showLoading();
 
         const result = await apiFetch(
 
             `${API_BASE}/orders/${id}`
 
         );
+
+        hideLoading();
 
         localStorage.setItem(
 
@@ -1774,17 +2699,19 @@ async function editPurchase(id) {
 
         window.location.href =
 
-            "/addPurchase.html?edit=true";
+        "/addPurchase.html?edit=true";
 
     }
 
-    catch (error) {
+    catch(error){
+
+        hideLoading();
 
         console.error(error);
 
         showToast(
 
-            "Unable to load purchase order.",
+            "Unable to load Purchase Order.",
 
             "#dc2626"
 
@@ -1795,12 +2722,12 @@ async function editPurchase(id) {
 }
 
 // ======================================================
-// Initialize Edit Mode
+// INITIALIZE EDIT MODE
 // ======================================================
 
-function initializeEditMode() {
+function initializeEditMode(){
 
-    if (!purchaseForm) return;
+    if(!purchaseForm) return;
 
     const purchase = JSON.parse(
 
@@ -1808,83 +2735,156 @@ function initializeEditMode() {
 
     );
 
-    if (!purchase) return;
+    if(!purchase) return;
 
     document.title =
 
-        "Update Purchase Order | VendorLink";
+    "Update Purchase Order | VendorLink";
 
-    document.getElementById("pageHeading").innerText =
+    const heading =
+
+    document.getElementById("pageHeading");
+
+    if(heading){
+
+        heading.innerText =
 
         "Update Purchase Order";
+
+    }
+
+    const submitBtn =
 
     purchaseForm.querySelector(
 
         "button[type='submit']"
 
-    ).innerText =
+    );
+
+    if(submitBtn){
+
+        submitBtn.innerText =
 
         "Update Purchase Order";
 
+    }
+
     document.getElementById("poNumber").value =
-        purchase.poNumber;
+
+    purchase.purchaseOrderNo || "";
 
     document.getElementById("vendor").value =
-        purchase.vendor._id || purchase.vendor;
+
+    purchase.vendor?._id || purchase.vendor;
 
     document.getElementById("productName").value =
-        purchase.productName;
 
-    document.getElementById("category").value =
-        purchase.category;
+    purchase.productName || "";
 
     document.getElementById("quantity").value =
-        purchase.quantity;
+
+    purchase.quantity || "";
 
     document.getElementById("unitPrice").value =
-        purchase.unitPrice;
+
+    purchase.unitPrice || "";
 
     document.getElementById("totalAmount").value =
-        purchase.totalAmount;
+
+    purchase.totalAmount || "";
 
     document.getElementById("status").value =
-        purchase.status;
 
-    document.getElementById("orderDate").value =
-        purchase.orderDate.substring(0, 10);
-
-    document.getElementById("deliveryDate").value =
-        purchase.deliveryDate.substring(0, 10);
+    purchase.status || "Pending";
 
     document.getElementById("notes").value =
-        purchase.notes || "";
+
+    purchase.remarks || purchase.description || "";
+
+    if(purchase.orderDate){
+
+        document.getElementById("orderDate").value =
+
+        purchase.orderDate.substring(0,10);
+
+    }
+
+    if(purchase.expectedDeliveryDate){
+
+        document.getElementById("deliveryDate").value =
+
+        purchase.expectedDeliveryDate.substring(0,10);
+
+    }
 
 }
 
 // ======================================================
-// Initialize
+// RESET FORM
+// ======================================================
+
+function resetPurchaseForm(){
+
+    if(!purchaseForm) return;
+
+    purchaseForm.reset();
+
+    if(totalAmountInput){
+
+        totalAmountInput.value="";
+
+    }
+
+    localStorage.removeItem(
+
+        "editPurchase"
+
+    );
+
+}
+
+// ======================================================
+// PAGE INITIALIZATION
 // ======================================================
 
 document.addEventListener(
 
     "DOMContentLoaded",
 
-    async () => {
+    async()=>{
 
-        if (vendorSelect) {
+        try{
 
-            await loadVendorsDropdown();
+            if(vendorSelect){
 
-            initializeEditMode();
+                await loadVendorsDropdown();
+
+                initializeEditMode();
+
+            }
+
+            if(purchaseTable){
+
+                await refreshPurchaseOrders();
+
+            }
 
         }
 
-        if (purchaseTable) {
+        catch(error){
 
-            await refreshPurchaseOrders();
+            console.error(error);
 
         }
 
     }
 
 );
+
+// ======================================================
+// EXPORT TO GLOBAL
+// ======================================================
+
+window.editPurchase = editPurchase;
+
+window.deletePurchase = deletePurchase;

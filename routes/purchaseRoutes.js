@@ -1,3 +1,65 @@
+// const express = require("express");
+
+// const router = express.Router();
+
+// const authMiddleware = require("../middleware/authMiddleware");
+
+// const {
+//   createPurchaseOrder,
+//   getAllPurchaseOrders,
+//   getPurchaseOrderById,
+//   updatePurchaseOrder,
+//   deletePurchaseOrder,
+//   updateOrderStatus,
+//   purchaseStats,
+//   monthlyPurchaseReport,
+// } = require("../controllers/purchaseController");
+
+// // ======================================
+// // Dashboard & Reports
+// // ======================================
+
+// // Purchase Dashboard Statistics
+// router.get("/stats", authMiddleware, purchaseStats);
+
+// // Monthly Purchase Report
+// router.get("/report/monthly", authMiddleware, monthlyPurchaseReport);
+
+// // ======================================
+// // Purchase Order Status
+// // ======================================
+
+// // Update Purchase Order Status
+// router.patch(
+//   "/status/:id",
+//   authMiddleware,
+//   updateOrderStatus
+// );
+
+// // ======================================
+// // CRUD Routes
+// // ======================================
+
+// // Get All Purchase Orders
+// router.get("/", authMiddleware, getAllPurchaseOrders);
+
+// // Get Purchase Order By ID
+// router.get("/:id", authMiddleware, getPurchaseOrderById);
+
+// // Create Purchase Order
+// router.post("/", authMiddleware, createPurchaseOrder);
+
+// // Update Purchase Order
+// router.put("/:id", authMiddleware, updatePurchaseOrder);
+
+// // Delete Purchase Order
+// router.delete("/:id", authMiddleware, deletePurchaseOrder);
+
+// module.exports = router;
+
+
+
+
 const express = require("express");
 
 const router = express.Router();
@@ -5,54 +67,91 @@ const router = express.Router();
 const authMiddleware = require("../middleware/authMiddleware");
 
 const {
-  createPurchaseOrder,
-  getAllPurchaseOrders,
-  getPurchaseOrderById,
-  updatePurchaseOrder,
-  deletePurchaseOrder,
-  updateOrderStatus,
-  purchaseStats,
-  monthlyPurchaseReport,
+
+    createPurchaseOrder,
+
+    getAllPurchaseOrders,
+
+    getPurchaseOrderById,
+
+    updatePurchaseOrder,
+
+    deletePurchaseOrder,
+
+    updateOrderStatus,
+
+    purchaseStats,
+
+    monthlyPurchaseReport
+
 } = require("../controllers/purchaseController");
 
-// ======================================
-// Dashboard & Reports
-// ======================================
-
-// Purchase Dashboard Statistics
-router.get("/stats", authMiddleware, purchaseStats);
-
-// Monthly Purchase Report
-router.get("/report/monthly", authMiddleware, monthlyPurchaseReport);
 
 // ======================================
-// Purchase Order Status
+// Dashboard
 // ======================================
 
-// Update Purchase Order Status
-router.patch(
-  "/status/:id",
-  authMiddleware,
-  updateOrderStatus
+router.get(
+    "/stats",
+    authMiddleware,
+    purchaseStats
 );
 
+
 // ======================================
-// CRUD Routes
+// Reports
 // ======================================
 
-// Get All Purchase Orders
-router.get("/", authMiddleware, getAllPurchaseOrders);
+router.get(
+    "/report/monthly",
+    authMiddleware,
+    monthlyPurchaseReport
+);
 
-// Get Purchase Order By ID
-router.get("/:id", authMiddleware, getPurchaseOrderById);
 
-// Create Purchase Order
-router.post("/", authMiddleware, createPurchaseOrder);
+// ======================================
+// Status
+// ======================================
 
-// Update Purchase Order
-router.put("/:id", authMiddleware, updatePurchaseOrder);
+router.patch(
+    "/status/:id",
+    authMiddleware,
+    updateOrderStatus
+);
 
-// Delete Purchase Order
-router.delete("/:id", authMiddleware, deletePurchaseOrder);
+
+// ======================================
+// CRUD
+// ======================================
+
+router.get(
+    "/",
+    authMiddleware,
+    getAllPurchaseOrders
+);
+
+router.get(
+    "/:id",
+    authMiddleware,
+    getPurchaseOrderById
+);
+
+router.post(
+    "/",
+    authMiddleware,
+    createPurchaseOrder
+);
+
+router.put(
+    "/:id",
+    authMiddleware,
+    updatePurchaseOrder
+);
+
+router.delete(
+    "/:id",
+    authMiddleware,
+    deletePurchaseOrder
+);
 
 module.exports = router;
