@@ -2466,6 +2466,7 @@ showLoading();
 let response;
 
 if(editMode){
+    console.log(purchaseData);
 
 response=await fetch(
 
