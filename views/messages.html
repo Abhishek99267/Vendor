@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Messages | VendorLink</title>
+
+    <link rel="stylesheet"
+          href="/style.css">
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- Sidebar -->
+
+    <aside class="sidebar">
+
+        <h2>VendorLink</h2>
+
+        <ul>
+
+            <li><a href="/dashboard">📊 Dashboard</a></li>
+
+            <li><a href="/vendors">👥 Vendors</a></li>
+
+            <li><a href="/purchaseOrders">📦 Purchase Orders</a></li>
+
+            <li><a href="/performance">⭐ Performance</a></li>
+
+            <li>
+                <a href="/messages" class="active">
+                    💬 Messages
+                </a>
+            </li>
+
+            <li><a href="/">🏠 Home</a></li>
+
+            <li>
+                <a href="#" id="sidebarLogout">
+                    🚪 Logout
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+
+    <!-- Main -->
+
+    <main class="main-content">
+
+        <div class="topbar">
+
+            <h2>
+
+                Messages
+
+            </h2>
+
+            <button
+                id="logoutBtn"
+                class="btn btn-danger">
+
+                Logout
+
+            </button>
+
+        </div>
+
+        <div class="content">
+
+            <!-- Header -->
+
+            <div class="page-header">
+
+                <h2>
+
+                    Supplier Communication
+
+                </h2>
+
+                <a
+                    href="/addMessage"
+                    class="btn btn-primary">
+
+                    + Compose Message
+
+                </a>
+
+            </div>
+
+            <!-- Statistics -->
+
+            <div class="card-grid">
+
+                <div class="card">
+
+                    <h3>Total Messages</h3>
+
+                    <h1 id="totalMessages">0</h1>
+
+                </div>
+
+                <div class="card">
+
+                    <h3>Unread</h3>
+
+                    <h1 id="unreadMessages">0</h1>
+
+                </div>
+
+                <div class="card">
+
+                    <h3>Read</h3>
+
+                    <h1 id="readMessages">0</h1>
+
+                </div>
+
+                <div class="card">
+
+                    <h3>Sent Today</h3>
+
+                    <h1 id="todayMessages">0</h1>
+
+                </div>
+
+            </div>
+
+            <br>
+
+            <!-- Search -->
+
+            <div class="search-bar">
+
+                <input
+                    type="text"
+                    id="searchMessage"
+                    placeholder="Search messages">
+
+                <button
+                    id="searchBtn"
+                    class="btn btn-primary">
+
+                    Search
+
+                </button>
+
+            </div>
+
+            <br>
+
+            <!-- Messages Table -->
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Vendor</th>
+
+                            <th>Subject</th>
+
+                            <th>Date</th>
+
+                            <th>Status</th>
+
+                            <th>Actions</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="messageTable">
+
+                        <tr>
+
+                            <td colspan="5"
+                                style="text-align:center;">
+
+                                Loading Messages...
+
+                            </td>
+
+                        </tr>
+
+
+
+                       </tbody>
+
+                </table>
+
+            </div>
+
+            <br>
+
+            <!-- ==========================
+                 Recent Communication
+            =========================== -->
+
+            <div class="form-card">
+
+                <h2>
+
+                    Recent Communication
+
+                </h2>
+
+                <br>
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Date</th>
+
+                            <th>Vendor</th>
+
+                            <th>Subject</th>
+
+                            <th>Status</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="recentMessageTable">
+
+                        <tr>
+
+                            <td colspan="4"
+                                style="text-align:center;">
+
+                                No Messages Found
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <br>
+
+            <!-- ==========================
+                 Delete Confirmation Modal
+            =========================== -->
+
+            <div
+                id="deleteModal"
+                class="modal">
+
+                <div class="modal-content">
+
+                    <span
+                        id="closeModal"
+                        class="close-modal">
+
+                        &times;
+
+                    </span>
+
+                    <h2>
+
+                        Delete Message
+
+                    </h2>
+
+                    <br>
+
+                    <p>
+
+                        Are you sure you want to delete this message?
+
+                    </p>
+
+                    <br>
+
+                    <button
+                        id="confirmDelete"
+                        class="btn btn-danger">
+
+                        Delete
+
+                    </button>
+
+                    <button
+                        id="cancelDelete"
+                        class="btn btn-primary">
+
+                        Cancel
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+
+        <footer class="footer">
+
+            <p>
+
+                © 2026 VendorLink - Vendor Management System
+
+            </p>
+
+        </footer>
+
+    </main>
+
+</div>
+
+<script src="/common.js"></script>
+<script src="/messages.js"></script>
+
+</body>
+
+</html>
+

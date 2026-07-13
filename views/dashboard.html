@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>VendorLink | Dashboard</title>
+
+    <link rel="stylesheet"
+          href="/style.css">
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- ==========================
+         Sidebar
+    =========================== -->
+
+    <aside class="sidebar">
+
+        <h2>VendorLink</h2>
+
+        <ul>
+
+            <li>
+
+                <a href="/dashboard"
+                   class="active">
+
+                    📊 Dashboard
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="/vendors">
+
+                    👥 Vendors
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="/purchaseOrders">
+
+                    📦 Purchase Orders
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="/performance">
+
+                    ⭐ Performance
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="/messages">
+
+                    💬 Messages
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="/">
+
+                    🏠 Home
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="#"
+                   id="logoutBtn">
+
+                    🚪 Logout
+
+                </a>
+
+            </li>
+
+        </ul>
+
+    </aside>
+
+    <!-- ==========================
+         Main Content
+    =========================== -->
+
+    <main class="main-content">
+
+        <!-- Top Bar -->
+
+        <div class="topbar">
+
+            <h2 id="userName">
+
+                Welcome
+
+            </h2>
+
+            <button
+                class="btn btn-danger"
+                id="logoutBtn">
+
+                Logout
+
+            </button>
+
+        </div>
+
+        <!-- Dashboard Content -->
+
+        <div class="content">
+
+            <h2>
+
+                Dashboard Overview
+
+            </h2>
+
+            <br>
+
+            <!-- ==========================
+                 Statistics Cards
+            =========================== -->
+
+            <div class="card-grid">
+
+                <div class="card">
+
+                    <h3>Total Vendors</h3>
+
+                    <h1 id="totalVendors">
+
+                        0
+
+                    </h1>
+
+                </div>
+
+                <div class="card">
+
+                    <h3>Active Vendors</h3>
+
+                    <h1 id="activeVendors">
+
+                        0
+
+                    </h1>
+
+                </div>
+
+                <div class="card">
+
+                    <h3>Vendor Rating</h3>
+
+                    <h1 id="vendorRating">
+
+                        0
+
+                    </h1>
+
+                </div>
+
+                <div class="card">
+
+                    <h3>Total Orders</h3>
+
+                    <h1 id="totalOrders">
+
+                        0
+
+                    </h1>
+
+                </div>
+
+                <div class="card">
+
+                    <h3>Pending Orders</h3>
+
+                    <h1 id="pendingOrders">
+
+                        0
+
+                    </h1>
+
+                </div>
+
+                <div class="card">
+
+                    <h3>Completed Orders</h3>
+
+                    <h1 id="completedOrders">
+
+                        0
+
+                    </h1>
+
+                </div>
+
+            </div>
+
+
+
+
+
+                  <!-- ==========================
+                 More Statistics
+            =========================== -->
+
+            <div class="card-grid">
+
+                <div class="card">
+
+                    <h3>Total Purchase</h3>
+
+                    <h1 id="purchaseAmount">
+
+                        ₹0
+
+                    </h1>
+
+                </div>
+
+                <div class="card">
+
+                    <h3>Overall Rating</h3>
+
+                    <h1 id="overallRating">
+
+                        0.0
+
+                    </h1>
+
+                </div>
+
+                <div class="card">
+
+                    <h3>Total Messages</h3>
+
+                    <h1 id="totalMessages">
+
+                        0
+
+                    </h1>
+
+                </div>
+
+                <div class="card">
+
+                    <h3>Unread Messages</h3>
+
+                    <h1 id="unreadMessages">
+
+                        0
+
+                    </h1>
+
+                </div>
+
+            </div>
+
+            <!-- ==========================
+                 Quick Actions
+            =========================== -->
+
+            <div class="form-card">
+
+                <h2>
+
+                    Quick Actions
+
+                </h2>
+
+                <br>
+
+                <div
+                    style="
+                        display:flex;
+                        gap:20px;
+                        flex-wrap:wrap;
+                    ">
+
+                    <a
+                        href="/addVendor"
+                        class="btn btn-primary">
+
+                        + Add Vendor
+
+                    </a>
+
+                    <a
+                        href="/addPurchase"
+                        class="btn btn-success">
+
+                        + New Purchase Order
+
+                    </a>
+
+                    <a
+                        href="/performance"
+                        class="btn btn-warning">
+
+                        Vendor Performance
+
+                    </a>
+
+                    <a
+                        href="/messages"
+                        class="btn btn-primary">
+
+                        Send Message
+
+                    </a>
+
+                </div>
+
+            </div>
+
+            <br>
+
+            <!-- ==========================
+                 Recent Vendors
+            =========================== -->
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Vendor</th>
+
+                            <th>Company</th>
+
+                            <th>Email</th>
+
+                            <th>Status</th>
+
+                            <th>Rating</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="recentVendorTable">
+
+                        <tr>
+
+                            <td colspan="5"
+                                style="text-align:center;">
+
+                                No Vendors Found
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <br>
+
+            <!-- ==========================
+                 Recent Purchase Orders
+            =========================== -->
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>PO Number</th>
+
+                            <th>Vendor</th>
+
+                            <th>Product</th>
+
+                            <th>Status</th>
+
+                            <th>Total</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="recentPurchaseTable">
+
+                        <tr>
+
+                            <td colspan="5"
+                                style="text-align:center;">
+
+                                No Purchase Orders Found
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <br>
+            
+            
+      
+            
+
+                        <!-- ==========================
+                 Recent Activity
+            =========================== -->
+
+            <div class="form-card">
+
+                <h2>Recent Activity</h2>
+
+                <br>
+
+                <ul
+                    style="
+                        line-height:2.2;
+                        color:#475569;
+                        padding-left:20px;
+                    ">
+
+                    <li>✔ New vendor registrations will appear here.</li>
+
+                    <li>✔ Latest purchase orders will be tracked here.</li>
+
+                    <li>✔ Vendor performance updates will be displayed here.</li>
+
+                    <li>✔ Recent supplier messages will be listed here.</li>
+
+                </ul>
+
+            </div>
+
+            <br>
+
+        </div>
+
+        <!-- ==========================
+             Footer
+        =========================== -->
+
+        <footer class="footer">
+
+            <p>
+
+                © 2026 VendorLink - Vendor Management System
+
+            </p>
+
+        </footer>
+
+    </main>
+
+</div>
+<script src="/common.js"></script>
+
+<script src="/dashboard.js"></script>
+
+</body>
+
+</html>

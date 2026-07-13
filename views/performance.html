@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Vendor Performance | VendorLink</title>
+
+    <link rel="stylesheet"
+          href="/style.css">
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- Sidebar -->
+
+    <aside class="sidebar">
+
+        <h2>VendorLink</h2>
+
+        <ul>
+
+            <li><a href="/dashboard">📊 Dashboard</a></li>
+
+            <li><a href="/vendors">👥 Vendors</a></li>
+
+            <li><a href="/purchaseOrders">📦 Purchase Orders</a></li>
+
+            <li>
+                <a href="/performance" class="active">
+                    ⭐ Performance
+                </a>
+            </li>
+
+            <li><a href="/messages">💬 Messages</a></li>
+
+            <li><a href="/">🏠 Home</a></li>
+
+            <li>
+                <a href="#" id="sidebarLogout">
+                    🚪 Logout
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+
+    <!-- Main Content -->
+
+    <main class="main-content">
+
+        <div class="topbar">
+
+            <h2>
+
+                Vendor Performance
+
+            </h2>
+
+            <button
+                id="logoutBtn"
+                class="btn btn-danger">
+
+                Logout
+
+            </button>
+
+        </div>
+
+        <div class="content">
+
+            <!-- Header -->
+
+            <div class="page-header">
+
+                <h2>
+
+                    Performance Evaluation
+
+                </h2>
+
+                <button
+                    class="btn btn-primary"
+                    id="addEvaluationBtn">
+
+                    + New Evaluation
+
+                </button>
+
+            </div>
+
+            <!-- Statistics -->
+
+            <div class="card-grid">
+
+                <div class="card">
+
+                    <h3>
+
+                        Total Evaluations
+
+                    </h3>
+
+                    <h1 id="totalEvaluations">
+
+                        0
+
+                    </h1>
+
+                </div>
+
+                <div class="card">
+
+                    <h3>
+
+                        Average Rating
+
+                    </h3>
+
+                    <h1 id="averageRating">
+
+                        0.0
+
+                    </h1>
+
+                </div>
+
+                <div class="card">
+
+                    <h3>
+
+                        Best Vendor
+
+                    </h3>
+
+                    <h1 id="bestVendor">
+
+                        -
+
+                    </h1>
+
+                </div>
+
+                <div class="card">
+
+                    <h3>
+
+                        Low Performance
+
+                    </h3>
+
+                    <h1 id="lowPerformance">
+
+                        0
+
+                    </h1>
+
+                </div>
+
+            </div>
+
+            <br>
+
+            <!-- Search -->
+
+            <div class="search-bar">
+
+                <input
+                    type="text"
+                    id="searchPerformance"
+                    placeholder="Search Vendor">
+
+                <button
+                    class="btn btn-primary"
+                    id="searchBtn">
+
+                    Search
+
+                </button>
+
+            </div>
+
+            <br>
+
+            <!-- Performance Table -->
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Vendor</th>
+
+                            <th>Quality</th>
+
+                            <th>Delivery</th>
+
+                            <th>Cost</th>
+
+                            <th>Communication</th>
+
+                            <th>Overall</th>
+
+                            <th>Actions</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="performanceTable">
+
+                        <tr>
+
+                            <td colspan="7"
+                                style="text-align:center;">
+
+                                Loading...
+
+                            </td>
+
+                        </tr>
+
+
+
+                        </tbody>
+
+                </table>
+
+            </div>
+
+            <br>
+
+            <!-- ==========================
+                 Top Performing Vendors
+            =========================== -->
+
+            <div class="form-card">
+
+                <h2>
+
+                    Top Performing Vendors
+
+                </h2>
+
+                <br>
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Rank</th>
+                            <th>Vendor</th>
+                            <th>Overall Rating</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="topVendorTable">
+
+                        <tr>
+
+                            <td colspan="3"
+                                style="text-align:center;">
+
+                                No Data Available
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <br>
+
+            <!-- ==========================
+                 Recent Evaluations
+            =========================== -->
+
+            <div class="form-card">
+
+                <h2>
+
+                    Recent Evaluations
+
+                </h2>
+
+                <br>
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Date</th>
+                            <th>Vendor</th>
+                            <th>Rating</th>
+                            <th>Remarks</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="recentEvaluationTable">
+
+                        <tr>
+
+                            <td colspan="4"
+                                style="text-align:center;">
+
+                                No Evaluations Found
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+        <!-- ==========================
+             Footer
+        =========================== -->
+
+        <footer class="footer">
+
+            <p>
+
+                © 2026 VendorLink - Vendor Management System
+
+            </p>
+
+        </footer>
+
+    </main>
+
+</div>
+
+<script src="/common.js"></script>
+<script src="/performance.js"></script>
+
+</body>
+
+</html>
+
